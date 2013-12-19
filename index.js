@@ -7,6 +7,7 @@ module.exports = parse
  * conversion ratios
  */
 
+parse.milliseconds = 
 parse.ms = 1
 parse.seconds =
 parse.second =
