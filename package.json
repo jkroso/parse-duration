@@ -1,0 +1,16 @@
+{
+  "name": "parse-duration",
+  "version": "0.1.0",
+  "description": "convert a human readable duration string to ms",
+  "keywords": ["parse","duration","time"],
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "jkroso/serve",
+    "jsmd": "*"
+  },
+  "repository": "git://github.com/jkroso/parse-duration.git",
+  "bugs": "https://github.com/jkroso/parse-duration/issues",
+  "author": "Jake Rosoman",
+  "files": ["index.js"],
+  "license": "MIT"
+}
