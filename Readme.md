@@ -65,26 +65,12 @@ parse('2e3s') // => 2000 * s
 
 Available unit types are:
 
-- ms
-- s
-- sec
-- second
-- seconds
-- m
-- mins
-- min
-- minute
-- minutes
-- h
-- hr
-- hour
-- hours
-- d
-- day
-- days
-- y
-- yr
-- year
-- years
+- milliseconds (ms)
+- seconds (s, sec)
+- minutes (m, min)
+- hours (h, hr)
+- days (d)
+- weeks (w, wk)
+- years (y, yr)
 
 And its easy to add more
