@@ -1,6 +1,6 @@
 {
   "name": "parse-duration",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "convert a human readable duration string to ms",
   "keywords": ["parse","duration","time"],
   "dependencies": {},
