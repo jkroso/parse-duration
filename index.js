@@ -50,6 +50,8 @@ parse.y = parse.d * 365.25
 
 function parse(str){
   var result = 0
+  // ignore commas
+  str = str.replace(/(\d),(\d)/g, '$1$2')
   str.replace(duration, function(_, n, units){
     units = parse[units]
       || parse[units.toLowerCase().replace(/s$/, '')]

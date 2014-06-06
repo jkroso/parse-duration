@@ -47,6 +47,12 @@ whitespace
 parse('1 hr 20 mins') // => 1 * h + 20 * m
 ```
 
+comma seperated numbers
+
+```js
+parse('27,681 ns') // => 27681 * ns
+```
+
 And most other types of noise
 
 ```js
