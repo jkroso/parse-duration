@@ -7,7 +7,7 @@ module.exports = parse
  * conversion ratios
  */
 
-parse.milliseconds = 
+parse.milliseconds =
 parse.ms = 1
 parse.seconds =
 parse.second =
@@ -42,9 +42,9 @@ parse.y = parse.d * 365.25
  */
 
 function parse(str){
-	var result = 0
-	str.replace(duration, function(_, n, units){
-		result += parseFloat(n, 10) * (parse[units] || 1)
-	})
-	return result
+  var result = 0
+  str.replace(duration, function(_, n, units){
+    result += parseFloat(n, 10) * (parse[units] || 1)
+  })
+  return result
 }
