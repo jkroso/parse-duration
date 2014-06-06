@@ -1,5 +1,5 @@
 
-var duration = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-z]*)/ig
+var duration = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/ig
 
 module.exports = parse
 
@@ -7,29 +7,36 @@ module.exports = parse
  * conversion ratios
  */
 
-parse.milliseconds =
+parse.nanosecond =
+parse.ns = 1 / 1e6
+
+parse.μs =
+parse.microsecond = 1 / 1e3
+
+parse.millisecond =
 parse.ms = 1
-parse.seconds =
+
 parse.second =
 parse.sec =
 parse.s = parse.ms * 1000
-parse.minutes =
+
 parse.minute =
 parse.min =
-parse.mins =
 parse.m = parse.s * 60
-parse.hours =
+
 parse.hour =
 parse.hr =
 parse.h = parse.m * 60
-parse.days =
+
 parse.day =
 parse.d = parse.h * 24
-parse.weeks =
+
 parse.week =
 parse.wk =
 parse.w = parse.d * 7
-parse.years =
+
+parse.month = parse.d * (365.25 / 12)
+
 parse.year =
 parse.yr =
 parse.y = parse.d * 365.25
@@ -44,7 +51,10 @@ parse.y = parse.d * 365.25
 function parse(str){
   var result = 0
   str.replace(duration, function(_, n, units){
-    result += parseFloat(n, 10) * (parse[units] || 1)
+    units = parse[units]
+      || parse[units.toLowerCase().replace(/s$/, '')]
+      || 1
+    result += parseFloat(n, 10) * units
   })
   return result
 }

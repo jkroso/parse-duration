@@ -24,6 +24,8 @@ var parse = require('parse-duration')
   convert `str` to ms
 
 ```js
+var ns = parse('1ns') // => 1 / 1e6
+var μs = parse('1μs') // => 1 / 1000
 var ms = parse('1ms') // => 1
 var s = parse('1s')   // => ms * 1000
 var m = parse('1m')   // => s * 60
@@ -65,12 +67,15 @@ parse('2e3s') // => 2000 * s
 
 Available unit types are:
 
+- nanoseconds (ns)
+- microseconds (μs)
 - milliseconds (ms)
 - seconds (s, sec)
 - minutes (m, min)
 - hours (h, hr)
 - days (d)
 - weeks (w, wk)
+- months
 - years (y, yr)
 
 And its easy to add more
