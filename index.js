@@ -1,4 +1,6 @@
 
+var format = require("util").format;
+
 var duration = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/ig
 
 module.exports = parse
@@ -49,6 +51,11 @@ parse.y = parse.d * 365.25
  */
 
 function parse(str){
+  
+  if(!/\d/g.test(str)){
+    str = format("1 %s", str);
+  }
+  
   var result = 0
   // ignore commas
   str = str.replace(/(\d),(\d)/g, '$1$2')
