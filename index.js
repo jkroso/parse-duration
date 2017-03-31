@@ -1,7 +1,16 @@
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory)
+  } else if (typeof module === 'object' && module.exports) {
+    module.exports = factory()
+  } else {
+    root.parseDuration = factory()
+  }
+}(this, function () {
+
+"use strict"
 
 var duration = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/ig
-
-module.exports = parse
 
 /**
  * conversion ratios
@@ -60,3 +69,6 @@ function parse(str){
   })
   return result
 }
+
+return parse
+}))
