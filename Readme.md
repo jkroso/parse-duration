@@ -85,3 +85,11 @@ Available unit types are:
 - years (y, yr)
 
 And its easy to add more
+
+### parse(str, format)
+
+The output format can also be defined
+
+```js
+parse('1hr 20mins', 'm') // => 80
+```

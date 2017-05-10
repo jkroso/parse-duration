@@ -42,13 +42,29 @@ parse.yr =
 parse.y = parse.d * 365.25
 
 /**
+ * dividers for the output format
+ */
+
+let ms, s, m, h, d, w;
+const dividers = {
+  ms: ms = 1,
+  s: s = ms * 1000,
+  m: m = s * 60,
+  h: h = m * 60,
+  d: d = h * 24,
+  w: w = d * 7,
+};
+
+/**
  * convert `str` to ms
  *
  * @param {String} str
+ * @param {String} format
  * @return {Number}
  */
 
-function parse(str){
+function parse(str, format){
+  format = format || 'ms'
   var result = 0
   // ignore commas
   str = str.replace(/(\d),(\d)/g, '$1$2')
@@ -58,5 +74,5 @@ function parse(str){
       || 1
     result += parseFloat(n, 10) * units
   })
-  return result
+  return result / dividers[format]
 }
