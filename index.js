@@ -1,3 +1,4 @@
+'use strict'
 
 var duration = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/ig
 
@@ -35,6 +36,7 @@ parse.week =
 parse.wk =
 parse.w = parse.d * 7
 
+parse.b =
 parse.month = parse.d * (365.25 / 12)
 
 parse.year =
