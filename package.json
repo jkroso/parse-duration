@@ -6,7 +6,11 @@
   "dependencies": {},
   "devDependencies": {
     "serve": "jkroso/serve",
-    "jsmd": "*"
+    "jsmd": "*",
+    "tape": "^4.8.0"
+  },
+  "scripts": {
+    "test": "node test"
   },
   "repository": "git://github.com/jkroso/parse-duration.git",
   "bugs": "https://github.com/jkroso/parse-duration/issues",
