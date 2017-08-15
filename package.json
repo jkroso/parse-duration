@@ -5,8 +5,6 @@
   "keywords": ["parse","duration","time"],
   "dependencies": {},
   "devDependencies": {
-    "serve": "jkroso/serve",
-    "jsmd": "*",
     "tape": "^4.8.0"
   },
   "scripts": {
