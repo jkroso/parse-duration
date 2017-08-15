@@ -1,9 +1,0 @@
-{
-  "name": "parse-duration",
-  "repo": "jkroso/parse-duration",
-  "description": "convert a human readable duration string to ms",
-  "keywords": ["parse","duration","time"],
-  "dependencies": {},
-  "scripts": ["index.js"],
-  "license": "MIT"
-}
