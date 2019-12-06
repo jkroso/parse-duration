@@ -11,7 +11,7 @@ module.exports = parse
 parse.nanosecond =
 parse.ns = 1 / 1e6
 
-parse.μs =
+parse['μs'] =
 parse.microsecond = 1 / 1e3
 
 parse.millisecond =
