@@ -20,5 +20,6 @@
   "files": [
     "index.js"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "typings": "./index.d.ts"
 }
