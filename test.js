@@ -114,3 +114,9 @@ t('invalid', t => {
 
 	t.end()
 })
+
+t('format', t => {
+	t.equal(parse('1hr 20mins', 'm'), parse('1hr 20mins') / 1000 / 60)
+
+	t.end()
+})

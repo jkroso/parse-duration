@@ -63,5 +63,6 @@ function parse(str, format){
     units = parse[units] || parse[units.toLowerCase().replace(/s$/, '')]
     if (units) result = (result || 0) + parseFloat(n, 10) * units
   })
-  return result / parse[format]
+
+  return result && (result / parse[format])
 }
