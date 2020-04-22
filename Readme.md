@@ -15,7 +15,7 @@ var parse = require('parse-duration')
 
 ## API
 
-### parse(str)
+### parse(str, format='ms')
 
   convert `str` to ms
 
@@ -81,8 +81,6 @@ Available unit types are:
 - years (y, yr)
 
 And its easy to add more
-
-### parse(str, format)
 
 The output format can also be defined
 
