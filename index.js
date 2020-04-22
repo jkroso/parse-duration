@@ -1,6 +1,6 @@
 'use strict'
 
-var duration = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zµμ]*)/ig
+var duration = /(-?(?:\d+\.?\d*|\d*\.?\d+)(?:e[-+]?\d+)?)\s*([a-zµμ]*)/ig
 
 module.exports = parse
 
@@ -19,10 +19,8 @@ parse.microsecond = 1 / 1e3
 parse.millisecond =
 parse.ms = 1
 
-parse.seconds =
 parse.second =
 parse.sec =
-parse.secs =
 parse.s = parse.ms * 1000
 
 parse.minute =
@@ -40,8 +38,9 @@ parse.week =
 parse.wk =
 parse.w = parse.d * 7
 
+parse.month =
 parse.b =
-parse.month = parse.d * (365.25 / 12)
+parse.d * (365.25 / 12)
 
 parse.year =
 parse.yr =
