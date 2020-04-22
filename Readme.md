@@ -1,5 +1,5 @@
 
-# parse-duration ![travis](https://travis-ci.org/jkroso/parse-duration.svg?branch=master)
+# parse-duration [![Build Status](https://travis-ci.org/jkroso/parse-duration.svg?branch=master)](https://travis-ci.org/jkroso/parse-duration)
 
   convert a human readable duration to ms
 
