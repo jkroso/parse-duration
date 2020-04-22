@@ -50,10 +50,12 @@ parse.y = parse.d * 365.25
  * convert `str` to ms
  *
  * @param {String} str
+ * @param {String} format
  * @return {Number}
  */
 
-function parse(str){
+function parse(str, format){
+  format = format || 'ms'
   var result = null
   // ignore commas
   str = str.replace(/(\d),(\d)/g, '$1$2')
@@ -61,5 +63,5 @@ function parse(str){
     units = parse[units] || parse[units.toLowerCase().replace(/s$/, '')]
     if (units) result = (result || 0) + parseFloat(n, 10) * units
   })
-  return result
+  return result / parse[format]
 }
