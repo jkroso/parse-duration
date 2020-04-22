@@ -74,7 +74,9 @@ t('y, yr, yrs, year, years', t => {
 
 t('μs, ns', t => {
 	t.equal(parse('1ns'), 1 / 1e6)
+	t.equal(parse('1µs'), 1 / 1000)
 	t.equal(parse('1μs'), 1 / 1000)
+	t.equal(parse('1us'), 1 / 1000)
 
 	t.end()
 })

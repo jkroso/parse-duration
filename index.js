@@ -1,6 +1,6 @@
 'use strict'
 
-var duration = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/ig
+var duration = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zµμ]*)/ig
 
 module.exports = parse
 
@@ -11,7 +11,9 @@ module.exports = parse
 parse.nanosecond =
 parse.ns = 1 / 1e6
 
+parse['µs'] =
 parse['μs'] =
+parse.us =
 parse.microsecond = 1 / 1e3
 
 parse.millisecond =
