@@ -1,15 +1,11 @@
 
-# parse-duration
+# parse-duration ![travis](https://travis-ci.org/jkroso/parse-duration.svg?branch=master)
 
   convert a human readable duration to ms
 
 ## Installation
 
-With your favourite package manager:
-
-- [packin](//github.com/jkroso/packin): `packin add parse-duration`
-- [component](//github.com/component/component#installing-packages): `component install jkroso/parse-duration`
-- [npm](//npmjs.org/doc/cli/npm-install.html): `npm install parse-duration`
+`npm install parse-duration`
 
 then in your app:
 

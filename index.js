@@ -1,5 +1,6 @@
+'use strict'
 
-var duration = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/ig
+var duration = /(-?(?:\d+\.?\d*|\d*\.?\d+)(?:e[-+]?\d+)?)\s*([a-zµμ]*)/ig
 
 module.exports = parse
 
@@ -10,7 +11,9 @@ module.exports = parse
 parse.nanosecond =
 parse.ns = 1 / 1e6
 
-parse.μs =
+parse['µs'] =
+parse['μs'] =
+parse.us =
 parse.microsecond = 1 / 1e3
 
 parse.millisecond =
@@ -35,7 +38,9 @@ parse.week =
 parse.wk =
 parse.w = parse.d * 7
 
-parse.month = parse.d * (365.25 / 12)
+parse.month =
+parse.b =
+parse.d * (365.25 / 12)
 
 parse.year =
 parse.yr =
@@ -51,14 +56,12 @@ parse.y = parse.d * 365.25
 
 function parse(str, format){
   format = format || 'ms'
-  var result = 0
+  var result = null
   // ignore commas
   str = str.replace(/(\d),(\d)/g, '$1$2')
   str.replace(duration, function(_, n, units){
-    units = parse[units]
-      || parse[units.toLowerCase().replace(/s$/, '')]
-      || 1
-    result += parseFloat(n, 10) * units
+    units = parse[units] || parse[units.toLowerCase().replace(/s$/, '')]
+    if (units) result = (result || 0) + parseFloat(n, 10) * units
   })
   return result / parse[format]
 }
