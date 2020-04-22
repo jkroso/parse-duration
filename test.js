@@ -106,3 +106,11 @@ t('edge cases', t => {
 
 	t.end()
 })
+
+t('invalid', t => {
+	t.equal(parse('abc'), null)
+
+	t.equal(parse('I have 2 mangoes and 5 apples'), null)
+
+	t.end()
+})

@@ -19,8 +19,10 @@ parse.microsecond = 1 / 1e3
 parse.millisecond =
 parse.ms = 1
 
+parse.seconds =
 parse.second =
 parse.sec =
+parse.secs =
 parse.s = parse.ms * 1000
 
 parse.minute =
@@ -53,14 +55,12 @@ parse.y = parse.d * 365.25
  */
 
 function parse(str){
-  var result = 0
+  var result = null
   // ignore commas
   str = str.replace(/(\d),(\d)/g, '$1$2')
   str.replace(duration, function(_, n, units){
-    units = parse[units]
-      || parse[units.toLowerCase().replace(/s$/, '')]
-      || 1
-    result += parseFloat(n, 10) * units
+    units = parse[units] || parse[units.toLowerCase().replace(/s$/, '')]
+    if (units) result = (result || 0) + parseFloat(n, 10) * units
   })
   return result
 }
