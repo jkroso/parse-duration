@@ -54,8 +54,7 @@ parse.y = parse.d * 365.25
  * @return {Number}
  */
 
-function parse(str, format){
-  format = format || 'ms'
+function parse(str='', format='ms'){
   var result = null
   // ignore commas
   str = str.replace(/(\d),(\d)/g, '$1$2')
