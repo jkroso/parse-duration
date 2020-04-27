@@ -18,7 +18,8 @@
   "bugs": "https://github.com/jkroso/parse-duration/issues",
   "author": "Jake Rosoman",
   "files": [
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "license": "MIT",
   "typings": "./index.d.ts"
