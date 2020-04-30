@@ -3,4 +3,4 @@
 /**
  * convert `str` to ms
  */
-export default function parse (str: string): number
+export default function parse (str: string): number | null
