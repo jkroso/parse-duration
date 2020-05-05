@@ -8,7 +8,9 @@
     "time"
   ],
   "module": "./index.mjs",
+  "main": "./index.js",
   "exports": {
+    "require": "./index.js",
     "import": "./index.mjs"
   },
   "dependencies": {},
