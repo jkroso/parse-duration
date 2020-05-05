@@ -23,6 +23,7 @@
   "author": "Jake Rosoman",
   "files": [
     "index.js",
+    "index.mjs",
     "index.d.ts"
   ],
   "license": "MIT",
