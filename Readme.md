@@ -10,6 +10,12 @@
 then in your app:
 
 ```js
+import parse from 'parse-duration'
+```
+
+or CommonJS:
+
+```js
 var parse = require('parse-duration')
 ```
 
