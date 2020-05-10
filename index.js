@@ -3,6 +3,8 @@
 var duration = /(-?(?:\d+\.?\d*|\d*\.?\d+)(?:e[-+]?\d+)?)\s*([a-zµμ]*)/ig
 
 module.exports = parse
+// enable default import syntax in typescript
+module.exports.default = parse
 
 /**
  * conversion ratios
