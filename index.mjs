@@ -57,11 +57,15 @@ function parse(str='', format='ms'){
   // ignore commas/placeholders
   str = (str+'').replace(/(\d)[,_](\d)/g, '$1$2')
   str.replace(durationRE, function(_, n, units){
-    units = parse[units] || parse[units.toLowerCase().replace(/s$/, '')]
+    units = unitRatio(units)
     if (units) result = (result || 0) + parseFloat(n, 10) * units
   })
 
-  return result && (result / parse[format])
+  return result && (result / (unitRatio(format) || 1))
+}
+
+function unitRatio(str) {
+  return parse[str] || parse[str.toLowerCase().replace(/s$/, '')]
 }
 
 export default parse
