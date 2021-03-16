@@ -89,6 +89,8 @@ t('combined', t => {
 
 	t.equal(parse('27,681 ns'), 27681 * ns)
 
+	t.equal(parse('27_681 ns'), 27681 * ns)
+
 	t.equal(parse('running length: 1hour:20mins'), 1* h + 20 * m)
 
 	t.equal(parse('2hr -40mins'), 1 * h + 20 * m)
@@ -118,5 +120,12 @@ t('invalid', t => {
 t('format', t => {
 	t.equal(parse('1hr 20mins', 'm'), parse('1hr 20mins') / 1000 / 60)
 
+	t.end()
+})
+
+t('no-units', t => {
+	t.equal(parse(1), 1)
+	t.equal(parse(`1`), 1)
+	t.equal(parse(`20`), 20)
 	t.end()
 })

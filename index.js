@@ -1,6 +1,6 @@
 'use strict'
 
-var duration = /(-?(?:\d+\.?\d*|\d*\.?\d+)(?:e[-+]?\d+)?)\s*([a-zµμ]*)/ig
+var durationRE = /(-?(?:\d+\.?\d*|\d*\.?\d+)(?:e[-+]?\d+)?)\s*([a-zµμ]*)/ig
 
 module.exports = parse
 // enable default import syntax in typescript
@@ -19,7 +19,8 @@ parse.us =
 parse.microsecond = 1 / 1e3
 
 parse.millisecond =
-parse.ms = 1
+parse.ms =
+parse[''] = 1
 
 parse.second =
 parse.sec =
@@ -58,9 +59,9 @@ parse.y = parse.d * 365.25
 
 function parse(str='', format='ms'){
   var result = null
-  // ignore commas
-  str = str.replace(/(\d),(\d)/g, '$1$2')
-  str.replace(duration, function(_, n, units){
+  // ignore commas/placeholders
+  str = (str+'').replace(/(\d)[,_](\d)/g, '$1$2')
+  str.replace(durationRE, function(_, n, units){
     units = parse[units] || parse[units.toLowerCase().replace(/s$/, '')]
     if (units) result = (result || 0) + parseFloat(n, 10) * units
   })
