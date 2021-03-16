@@ -132,3 +132,8 @@ t('no-units', t => {
 	t.end()
 })
 
+t('unicode support', t => {
+	parse['сек'] = parse['s'] // ru seconds
+	t.equal(parse('5сек'), 5000)
+	t.end()
+})

@@ -23,7 +23,7 @@ var parse = require('parse-duration')
 
 ### parse(str, format='ms')
 
-  convert `str` to ms
+Convert `str` to ms
 
 ```js
 var ns = parse('1ns') // => 1 / 1e6
@@ -58,7 +58,7 @@ parse('27,681 ns') // => 27681 * ns
 And most other types of noise
 
 ```js
-parse('running length: 1hour:20mins') // => 1* h + 20 * m
+parse('running length: 1hour:20mins') // => 1 * h + 20 * m
 ```
 
 You can even use negatives
@@ -86,7 +86,12 @@ Available unit types are:
 - months
 - years (y, yr)
 
-And its easy to add more
+And its easy to add more, including unicode:
+
+```js
+parse['сек'] = parse['sec']
+parse('5сек') // => 5000
+```
 
 The output format can also be defined
 
