@@ -5,7 +5,7 @@
 
 ## Installation
 
-`npm install parse-duration`
+[![NPM](https://nodei.co/npm/parse-duration.png?mini=true)](https://npmjs.org/package/parse-duration)
 
 then in your app:
 
