@@ -73,7 +73,7 @@ And exponents
 parse('2e3s') // => 2000 * s
 ```
 
-Available unit types are:
+#### Available unit types are:
 
 - nanoseconds (ns)
 - microseconds (μs)
