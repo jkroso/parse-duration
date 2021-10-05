@@ -81,6 +81,7 @@ t('μs, ns', t => {
 	t.end()
 })
 
+t('combined', t => {
 
 	t.equal(parse('1hr 20mins'), 1 * h + 20 * m)
 
