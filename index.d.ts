@@ -3,7 +3,7 @@
 /**
  * convert `str` to ms
  */
-type Units =
+export type Units =
   'nanosecond' | 'ns' |
   'µs' | 'μs' | 'us' | 'microsecond' |
   'millisecond' | 'ms' |
