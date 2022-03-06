@@ -41,12 +41,8 @@ It can also handle basic compound expressions
 
 ```js
 parse('1hr 20mins') // => 1 * h + 20 * m
-```
-
-whitespace
-
-```js
 parse('1 hr 20 mins') // => 1 * h + 20 * m
+parse('1h20m0s') // => 1 * h + 20 * m (youtube)
 ```
 
 comma seperated numbers

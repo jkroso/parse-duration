@@ -82,6 +82,7 @@ t('μs, ns', t => {
 })
 
 t('combined', t => {
+	t.equal(parse('01h20m00s'), 1 * h + 20 * m)
 
 	t.equal(parse('1hr 20mins'), 1 * h + 20 * m)
 
