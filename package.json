@@ -11,7 +11,8 @@
   "main": "./index.js",
   "exports": {
     "require": "./index.js",
-    "import": "./index.mjs"
+    "import": "./index.mjs",
+    "types": "./index.d.ts"
   },
   "dependencies": {},
   "devDependencies": {
