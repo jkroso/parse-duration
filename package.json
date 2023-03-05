@@ -9,6 +9,7 @@
   ],
   "module": "./index.mjs",
   "main": "./index.js",
+  "types": "./index.d.ts",
   "exports": {
     "require": "./index.js",
     "import": "./index.mjs",
