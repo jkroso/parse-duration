@@ -12,8 +12,7 @@
   "types": "./index.d.ts",
   "exports": {
     "require": "./index.js",
-    "import": "./index.mjs",
-    "types": "./index.d.ts"
+    "import": "./index.mjs"
   },
   "dependencies": {},
   "devDependencies": {
@@ -28,7 +27,8 @@
   "files": [
     "index.js",
     "index.mjs",
-    "index.d.ts"
+    "index.d.ts",
+    "index.d.mts"
   ],
   "license": "MIT",
   "typings": "./index.d.ts"
