@@ -15,7 +15,7 @@ export type Units =
   'month' | 'b' |
   'year' | 'yr' | 'y'
 
-declare const parse: ((input: string, format?: Units) => number) & {
+declare const parse: ((input: string, format?: Units) => number | undefined) & {
   [key: string]: number;
 };
 
