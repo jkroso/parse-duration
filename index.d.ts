@@ -18,7 +18,7 @@ declare namespace parse {
 }
 
 type Parse = {
-  (input: string, format?: parse.Units): number;
+  (input: string, format?: parse.Units): number | undefined;
   [key: string]: number;
 } & {
   default: Parse
