@@ -1,22 +1,29 @@
 // ./index.d.ts
 
-/**
- * convert `str` to ms
- */
-export type Units =
-  'nanosecond' | 'ns' |
-  'µs' | 'μs' | 'us' | 'microsecond' |
-  'millisecond' | 'ms' |
-  'second' | 'sec' | 's' |
-  'minute' | 'min' | 'm' |
-  'hour' | 'hr' | 'h' |
-  'day' | 'd' |
-  'week' | 'wk' | 'w' |
-  'month' | 'b' |
-  'year' | 'yr' | 'y'
+declare namespace parse {
+  /**
+   * convert `str` to ms
+   */
+  type Units =
+    'nanosecond' | 'ns' |
+    'µs' | 'μs' | 'us' | 'microsecond' |
+    'millisecond' | 'ms' |
+    'second' | 'sec' | 's' |
+    'minute' | 'min' | 'm' |
+    'hour' | 'hr' | 'h' |
+    'day' | 'd' |
+    'week' | 'wk' | 'w' |
+    'month' | 'b' |
+    'year' | 'yr' | 'y'
+}
 
-declare const parse: ((input: string, format?: Units) => number | undefined) & {
+type Parse = {
+  (input: string, format?: parse.Units): number | undefined;
   [key: string]: number;
-};
+} & {
+  default: Parse
+}
 
-export default parse;
+declare const parse: Parse;
+
+export = parse;
