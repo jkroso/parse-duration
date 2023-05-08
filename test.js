@@ -98,6 +98,8 @@ t('combined', t => {
 
 	t.equal(parse('2e3s'), 2000 * s)
 
+	t.equal(parse('2.1e3s'), 2100 * s)
+
 
 	t.end()
 })
@@ -136,5 +138,18 @@ t('no-units', t => {
 t('unicode support', t => {
 	parse['сек'] = parse['s'] // ru seconds
 	t.equal(parse('5сек'), 5000)
+	t.end()
+})
+
+t('local number formats', t => {
+	t.equal(parse('3.14 seconds'), 3140)
+	t.equal(parse('3,14 seconds'), 3140)
+	t.equal(parse('"1,23,456.789 seconds'), 123456789)
+	t.equal(parse('"1,23,456.789s'), 123456789)
+	t.equal(parse('"123.456,789 seconds'), 123456789)
+	t.equal(parse('"30,000.65 seconds'), 30000650)
+	t.equal(parse('"30.000,65 seconds'), 30000650)
+	t.equal(parse('"30 000,65 seconds'), 30000650)
+	t.equal(parse('"30_000,65 seconds'), 30000650)
 	t.end()
 })
