@@ -56,12 +56,13 @@ function parse(str='', format='ms'){
   var result = null
   // ignore commas/placeholders
   str = (str+'').replace(/(\d)[,_](\d)/g, '$1$2')
+  var isNegative = str[0] === '-';
   str.replace(durationRE, function(_, n, units){
     units = unitRatio(units)
-    if (units) result = (result || 0) + parseFloat(n, 10) * units
+    if (units) result = (result || 0) + Math.abs(parseFloat(n, 10)) * units
   })
 
-  return result && (result / (unitRatio(format) || 1))
+  return result && ((result / (unitRatio(format) || 1)) * (isNegative ? -1 : 1))
 }
 
 function unitRatio(str) {

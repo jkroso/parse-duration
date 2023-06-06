@@ -83,30 +83,20 @@ t('μs, ns', t => {
 
 t('combined', t => {
 	t.equal(parse('01h20m00s'), 1 * h + 20 * m)
-
 	t.equal(parse('1hr 20mins'), 1 * h + 20 * m)
-
 	t.equal(parse('1 hr 20 mins'), 1 * h + 20 * m)
-
 	t.equal(parse('27,681 ns'), 27681 * ns)
-
 	t.equal(parse('27_681 ns'), 27681 * ns)
-
 	t.equal(parse('running length: 1hour:20mins'), 1* h + 20 * m)
-
-	t.equal(parse('2hr -40mins'), 1 * h + 20 * m)
-
+	t.equal(parse('2hr -40mins'), 2 * h + 40 * m)
+	t.equal(parse('-1hr 40mins'), -1 * h - 40 * m)
 	t.equal(parse('2e3s'), 2000 * s)
-
-
 	t.end()
 })
 
 t('edge cases', t => {
 	t.equal(parse('1y.2b.5days.12hours.34sec.20ms'), 1 * y + .2 * b + .5 * d + .12 * h + .34 * s + .20 * ms)
-
-	t.equal(parse('-1y.2b.5days 12hours,34sec,20ms'), -1*y + .2*b + .5*d + 12*h + 34*s + 20*ms)
-
+	t.equal(parse('-1y.2b.5days 12hours,34sec,20ms'), -1*y - .2*b - .5*d - 12*h - 34*s - 20*ms)
 	t.end()
 })
 
