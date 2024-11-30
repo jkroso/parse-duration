@@ -73,7 +73,7 @@ function parse(str='', format='ms'){
     }
   })
 
-  return result && ((result / (unitRatio(format) || 1)) * (isNegative ? -1 : 1))
+  return result && ((result / (unitRatio(format.toLowerCase()) || 1)) * (isNegative ? -1 : 1))
 }
 
 function unitRatio(str) {
