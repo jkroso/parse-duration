@@ -19,8 +19,7 @@ parse.us =
 parse.microsecond = 1 / 1e3
 
 parse.millisecond =
-parse.ms =
-parse[''] = 1
+parse.ms = 1
 
 parse.second =
 parse.sec =
@@ -49,6 +48,8 @@ parse.year =
 parse.yr =
 parse.y = parse.d * 365.25
 
+var order = [parse.year, parse.month, parse.week, parse.day, parse.hour, parse.minute, parse.second, parse.millisecond, parse.microsecond, parse.nanosecond]
+
 /**
  * convert `str` to ms
  *
@@ -62,14 +63,19 @@ function parse(str='', format='ms'){
   // ignore commas/placeholders
   str = (str+'').replace(/(\d)[,_](\d)/g, '$1$2')
   var isNegative = str[0] === '-';
+  let lastUnit = 6
   str.replace(durationRE, function(_, n, units){
-    units = unitRatio(units)
-    if (units) result = (result || 0) + Math.abs(parseFloat(n, 10)) * units
+    units = units!=="" && unitRatio(units.toLowerCase())
+    if (units===false && lastUnit>=0) units = order[lastUnit + 1]
+    if (units) {
+      result = (result || 0) + Math.abs(parseFloat(n, 10)) * units
+      lastUnit = order.findIndex(u=>u===units)
+    }
   })
 
   return result && ((result / (unitRatio(format) || 1)) * (isNegative ? -1 : 1))
 }
 
 function unitRatio(str) {
-  return parse[str] || parse[str.toLowerCase().replace(/s$/, '')]
+  return parse[str] || parse[str.replace(/s$/, '')]
 }
