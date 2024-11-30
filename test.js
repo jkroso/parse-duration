@@ -128,3 +128,15 @@ t('unicode support', t => {
 	t.equal(parse('5сек'), 5000)
 	t.end()
 })
+
+t('upper-case characters', t => {
+	t.equal(parse('1 MINUTE'), 60000)
+	t.equal(parse('1MS'), 1)
+	t.end()
+})
+
+t('unit guessing', t => {
+	t.equal(parse('2m30'), 150000)
+	t.equal(parse('3d 1h 15'), 3*d + h + 15*m)
+	t.end()
+})
