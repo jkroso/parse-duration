@@ -65,7 +65,7 @@ parse('running length: 1hour:20mins') // => 1 * h + 20 * m
 You can even use negatives
 
 ```js
-parse('2hr -40mins') // => 1 * h + 20 * m
+parse('-1hr 40mins') // => 1 * h + 40 * m
 ```
 
 And exponents
