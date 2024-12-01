@@ -134,3 +134,9 @@ t('unit guessing', t => {
 	t.equal(parse('3d 1h 15'), 3 * d + h + 15 * m)
 	t.end()
 })
+
+t('upper-case characters', t => {
+	t.equal(parse('1 MINUTE'), 60000)
+	t.equal(parse('1MS'), 1)
+	t.end()
+})

@@ -64,7 +64,8 @@ function parse(str = '', format = 'ms') {
       }
       else units = format
     }
-    units = parse[units] || parse[units.toLowerCase().replace(/s$/, '')]
+    else units = units.toLowerCase()
+    units = parse[units] || parse[units.replace(/s$/, '')]
     if (units) result = (result || 0) + Math.abs(parseFloat(n, 10)) * units, prevUnits = units
   })
 
