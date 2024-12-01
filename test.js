@@ -3,7 +3,7 @@
 let t = require('tape')
 let parse = require('./')
 
-let {ns, h, b, s, ms, d, y, m} = parse
+let { ns, h, b, s, ms, d, y, m } = parse
 
 t('ms, millisecond, milliseconds', t => {
 	t.equal(parse('100ms'), 100)
@@ -40,34 +40,34 @@ t('h, hr, hrs, hour, hours', t => {
 	t.end()
 })
 t('d, day, days', t => {
-	t.equal(parse('1d'), 24*60*60*1000)
-	t.equal(parse('1day'), 24*60*60*1000)
-	t.equal(parse('1days'), 24*60*60*1000)
+	t.equal(parse('1d'), 24 * 60 * 60 * 1000)
+	t.equal(parse('1day'), 24 * 60 * 60 * 1000)
+	t.equal(parse('1days'), 24 * 60 * 60 * 1000)
 
 	t.end()
 })
 t('w, wk, wks, week, weeks', t => {
-	t.equal(parse('1w'), 24*60*60*7*1000)
-	t.equal(parse('1wk'), 24*60*60*7*1000)
-	t.equal(parse('1wks'), 24*60*60*7*1000)
-	t.equal(parse('1week'), 24*60*60*7*1000)
-	t.equal(parse('1weeks'), 24*60*60*7*1000)
+	t.equal(parse('1w'), 24 * 60 * 60 * 7 * 1000)
+	t.equal(parse('1wk'), 24 * 60 * 60 * 7 * 1000)
+	t.equal(parse('1wks'), 24 * 60 * 60 * 7 * 1000)
+	t.equal(parse('1week'), 24 * 60 * 60 * 7 * 1000)
+	t.equal(parse('1weeks'), 24 * 60 * 60 * 7 * 1000)
 
 	t.end()
 })
 t('b, month, months', t => {
-	t.equal(parse('1b'), 24*60*60*1000*365.25/12)
-	t.equal(parse('1month'), 24*60*60*1000*365.25/12)
-	t.equal(parse('1months'), 24*60*60*1000*365.25/12)
+	t.equal(parse('1b'), 24 * 60 * 60 * 1000 * 365.25 / 12)
+	t.equal(parse('1month'), 24 * 60 * 60 * 1000 * 365.25 / 12)
+	t.equal(parse('1months'), 24 * 60 * 60 * 1000 * 365.25 / 12)
 
 	t.end()
 })
 t('y, yr, yrs, year, years', t => {
-	t.equal(parse('1y'), 24*60*60*1000*365.25)
-	t.equal(parse('1yr'), 24*60*60*1000*365.25)
-	t.equal(parse('1yrs'), 24*60*60*1000*365.25)
-	t.equal(parse('1year'), 24*60*60*1000*365.25)
-	t.equal(parse('1years'), 24*60*60*1000*365.25)
+	t.equal(parse('1y'), 24 * 60 * 60 * 1000 * 365.25)
+	t.equal(parse('1yr'), 24 * 60 * 60 * 1000 * 365.25)
+	t.equal(parse('1yrs'), 24 * 60 * 60 * 1000 * 365.25)
+	t.equal(parse('1year'), 24 * 60 * 60 * 1000 * 365.25)
+	t.equal(parse('1years'), 24 * 60 * 60 * 1000 * 365.25)
 
 	t.end()
 })
@@ -87,7 +87,7 @@ t('combined', t => {
 	t.equal(parse('1 hr 20 mins'), 1 * h + 20 * m)
 	t.equal(parse('27,681 ns'), 27681 * ns)
 	t.equal(parse('27_681 ns'), 27681 * ns)
-	t.equal(parse('running length: 1hour:20mins'), 1* h + 20 * m)
+	t.equal(parse('running length: 1hour:20mins'), 1 * h + 20 * m)
 	t.equal(parse('2hr -40mins'), 2 * h + 40 * m)
 	t.equal(parse('-1hr 40mins'), -1 * h - 40 * m)
 	t.equal(parse('2e3s'), 2000 * s)
@@ -96,7 +96,7 @@ t('combined', t => {
 
 t('edge cases', t => {
 	t.equal(parse('1y.2b.5days.12hours.34sec.20ms'), 1 * y + .2 * b + .5 * d + .12 * h + .34 * s + .20 * ms)
-	t.equal(parse('-1y.2b.5days 12hours,34sec,20ms'), -1*y - .2*b - .5*d - 12*h - 34*s - 20*ms)
+	t.equal(parse('-1y.2b.5days 12hours,34sec,20ms'), -1 * y - .2 * b - .5 * d - 12 * h - 34 * s - 20 * ms)
 	t.end()
 })
 
@@ -108,14 +108,6 @@ t('invalid', t => {
 	t.end()
 })
 
-t('format', t => {
-	t.equal(parse('1hr 20mins', 'm'), parse('1hr 20mins') / 1000 / 60)
-	t.equal(parse('10 seconds', 's'), 10)
-	t.equal(parse('10s', 'seconds'), 10)
-
-	t.end()
-})
-
 t('no-units', t => {
 	t.equal(parse(1), 1)
 	t.equal(parse(`1`), 1)
@@ -123,8 +115,22 @@ t('no-units', t => {
 	t.end()
 })
 
+t('format', t => {
+	t.equal(parse('1hr 20mins', 'm'), parse('1hr 20mins') / 1000 / 60)
+	t.equal(parse('10 seconds', 's'), 10)
+	t.equal(parse('10s', 'second'), 10)
+
+	t.end()
+})
+
 t('unicode support', t => {
 	parse['сек'] = parse['s'] // ru seconds
 	t.equal(parse('5сек'), 5000)
+	t.end()
+})
+
+t('unit guessing', t => {
+	t.equal(parse('2m30'), 150000)
+	t.equal(parse('3d 1h 15'), 3 * d + h + 15 * m)
 	t.end()
 })
