@@ -1,7 +1,7 @@
 'use strict'
 
-let t = require('tape')
-let parse = require('./')
+import t from 'tape'
+import parse from './index.js'
 
 let { ns, h, b, s, ms, d, y, m } = parse.unit
 
