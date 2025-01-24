@@ -84,12 +84,25 @@ parse('2e3s') // => 2000 * s
 And its easy to add more, including unicode:
 
 ```js
-parse.unit['сек'] = parse.unit['sec']
-parse('5сек') // => 5000
+parse.unit['μs'] = parse.unit['microsecond']
+parse('5μs') // => 5000
 ```
 
 The output format can also be defined
 
 ```js
 parse('1hr 20mins', 'm') // => 80
+```
+
+## Locales
+
+Locale can be switched from default `en` to any other, [see /locale](/locale).
+
+```js
+import es from 'parse-duration/locale/es.js'
+import parse from 'parse-duration'
+
+parse.unit = es
+
+parse('1 hora 20 minutos', 'm') // => 80
 ```
