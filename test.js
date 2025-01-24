@@ -104,8 +104,16 @@ t('invalid', t => {
 	t.equal(parse('abc'), null)
 	t.equal(parse(), null)
 	t.equal(parse('I have 2 mangoes and 5 apples'), null)
+	t.end()
+})
+
+t('invalid: prototype names', t => {
 	t.equal(parse('2call 3apply'), null)
 	t.equal(parse('1arguments'), null)
+	t.equal(parse('1arguments'), null)
+	t.equal(parse('1constructor'), null)
+	t.equal(parse('1call'), null)
+	t.equal(parse('1name'), null)
 
 	t.end()
 })
