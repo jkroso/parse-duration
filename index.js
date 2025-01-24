@@ -1,10 +1,5 @@
-'use strict'
+let durationRE = /(-?(?:\d+\.?\d*|\d*\.?\d+)(?:e[-+]?\d+)?)\s*([\p{L}]*)/uig
 
-var durationRE = /(-?(?:\d+\.?\d*|\d*\.?\d+)(?:e[-+]?\d+)?)\s*([\p{L}]*)/uig
-
-module.exports = parse
-// enable default import syntax in typescript
-module.exports.default = parse
 
 /**
  * conversion ratios
@@ -58,10 +53,6 @@ parse.nanosecond =
  */
 
 function parse(str = '', format = 'ms') {
-  if (!Object.prototype.hasOwnProperty.call(parse, format)) {
-    throw new TypeError('Invalid format "' + format + '"')
-  }
-
   var result = null, prevUnits
   // ignore commas/placeholders
   str = (str + '').replace(/(\d)[,_](\d)/g, '$1$2')
@@ -86,3 +77,5 @@ function parse(str = '', format = 'ms') {
 
   return result && ((result / (parse[format] || 1)) * (str[0] === '-' ? -1 : 1))
 }
+
+export default parse

@@ -13,12 +13,6 @@ then in your app:
 import parse from 'parse-duration'
 ```
 
-or CommonJS:
-
-```js
-var parse = require('parse-duration')
-```
-
 ## API
 
 ### parse(str, format='ms')
@@ -90,7 +84,7 @@ parse('2e3s') // => 2000 * s
 And its easy to add more, including unicode:
 
 ```js
-parse['сек'] = parse['sec']
+parse.unit['сек'] = parse.unit['sec']
 parse('5сек') // => 5000
 ```
 

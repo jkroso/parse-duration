@@ -3,7 +3,7 @@
 let t = require('tape')
 let parse = require('./')
 
-let { ns, h, b, s, ms, d, y, m } = parse
+let { ns, h, b, s, ms, d, y, m } = parse.unit
 
 t('ms, millisecond, milliseconds', t => {
 	t.equal(parse('100ms'), 100)
@@ -126,7 +126,7 @@ t('format', t => {
 })
 
 t('unicode support', t => {
-	parse['сек'] = parse['s'] // ru seconds
+	parse.unit['сек'] = parse.unit['s'] // ru seconds
 	t.equal(parse('5сек'), 5000)
 	t.end()
 })
