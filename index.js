@@ -58,6 +58,10 @@ parse.nanosecond =
  */
 
 function parse(str = '', format = 'ms') {
+  if (!Object.prototype.hasOwnProperty.call(parse, format)) {
+    throw new TypeError('Invalid format "' + format + '"')
+  }
+
   var result = null, prevUnits
   // ignore commas/placeholders
   str = (str + '').replace(/(\d)[,_](\d)/g, '$1$2')
@@ -70,7 +74,13 @@ function parse(str = '', format = 'ms') {
       else units = format
     }
     else units = units.toLowerCase()
-    units = parse[units] || parse[units.replace(/s$/, '')]
+    if (Object.prototype.hasOwnProperty.call(parse, units)) {
+      units = parse[units]
+    } else if (Object.prototype.hasOwnProperty.call(parse, units.replace(/s$/, ''))) {
+      units = parse[units.replace(/s$/, '')]
+    } else {
+      units = null
+    }
     if (units) result = (result || 0) + Math.abs(parseFloat(n, 10)) * units, prevUnits = units
   })
 
