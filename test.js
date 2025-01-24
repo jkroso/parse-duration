@@ -104,6 +104,8 @@ t('invalid', t => {
 	t.equal(parse('abc'), null)
 	t.equal(parse(), null)
 	t.equal(parse('I have 2 mangoes and 5 apples'), null)
+	t.equal(parse('2call 3apply'), null)
+	t.equal(parse('1arguments'), null)
 
 	t.end()
 })
