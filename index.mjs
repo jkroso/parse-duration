@@ -65,7 +65,13 @@ function parse(str = '', format = 'ms') {
       else units = format
     }
     else units = units.toLowerCase()
-    units = parse[units] || parse[units.replace(/s$/, '')]
+    if (Object.prototype.hasOwnProperty.call(parse, units)) {
+      units = parse[units]
+    } else if (Object.prototype.hasOwnProperty.call(parse, units.replace(/s$/, ''))) {
+      units = parse[units.replace(/s$/, '')]
+    } else {
+      units = null
+    }
     if (units) result = (result || 0) + Math.abs(parseFloat(n, 10)) * units, prevUnits = units
   })
 
