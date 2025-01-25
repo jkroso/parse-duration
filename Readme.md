@@ -97,6 +97,7 @@ parse('1hr 20mins', 'm') // => 80
 ## Locales
 
 Locale can be switched from default `en` to any other, [see /locale](/locale).
+Locales extend english locale.
 
 ```js
 import es from 'parse-duration/locale/es.js'
@@ -105,4 +106,5 @@ import parse from 'parse-duration'
 parse.unit = es
 
 parse('1 hora 20 minutos', 'm') // => 80
+parse('1 hour 20 minutes', 'm') // => 80
 ```
