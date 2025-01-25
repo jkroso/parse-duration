@@ -10,7 +10,7 @@ Convert a human readable duration to ms.
 ```js
 import parse from 'parse-duration'
 
-// Parse different time units
+// parse different time units
 let ns = parse('1ns') // => 1 / 1e6
 let μs = parse('1μs') // => 1 / 1000
 let ms = parse('1ms') // => 1
