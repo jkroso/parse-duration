@@ -11,9 +11,6 @@
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
-  "exports": {
-    "default": "./index.js"
-  },
   "dependencies": {},
   "devDependencies": {
     "tape": "^4.8.0"
@@ -30,7 +27,8 @@
   ],
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "locale"
   ],
   "license": "MIT"
 }
