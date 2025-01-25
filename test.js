@@ -2,6 +2,7 @@
 
 import t from 'tape'
 import parse from './index.js'
+import es from './locale/es.js'
 
 let { ns, h, b, s, ms, d, y, m } = parse.unit
 
@@ -148,5 +149,11 @@ t('unit guessing', t => {
 t('upper-case characters', t => {
 	t.equal(parse('1 MINUTE'), 60000)
 	t.equal(parse('1MS'), 1)
+	t.end()
+})
+
+t('locales', t => {
+	parse.unit = es
+	t.equal(parse('1 hora 20 minutos', 'm'), 80)
 	t.end()
 })

@@ -1,15 +1,16 @@
-const unit = Object.create(null)
-const m = 60000, h = m * 60, d = h * 24, y = d * 365.25
+import en from './en.js'
 
-unit.年 = unit.年間 = y
-unit.月 = unit.ヶ月 = y / 12
-unit.週 = unit.週間 = d * 7
-unit.日 = unit.d = d
-unit.時間 = unit.時 = unit.h = h
-unit.分 = unit.分間 = unit.m = m
-unit.秒 = unit.秒間 = unit.s = 1000
-unit.ミリ秒 = unit.ms = 1
-unit['マイクロ秒'] = unit['μs'] = 1e-3
-unit.ナノ秒 = unit.ns = 1e-6
+const unit = Object.create(en)
+
+unit.年 = unit.年間 = en.y
+unit.月 = unit.ヶ月 = en.month
+unit.週 = unit.週間 = en.w
+unit.日 = en.d
+unit.時間 = unit.時 = en.h
+unit.分 = unit.分間 = en.m
+unit.秒 = unit.秒間 = en.s
+unit.ミリ秒 = en.ms
+unit.マイクロ秒 = en.us
+unit.ナノ秒 = en.ns
 
 export default unit

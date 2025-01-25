@@ -1,15 +1,16 @@
-const unit = Object.create(null)
-const m = 60000, h = m * 60, d = h * 24, y = d * 365.25
+import en from './en.js'
 
-unit.год = unit.г = unit.y = y
-unit.месяц = unit.мес = unit.m = y / 12
-unit.неделя = unit.нед = unit.w = d * 7
-unit.день = unit.д = unit.d = d
-unit.час = unit.ч = unit.h = h
-unit.минута = unit.мин = unit.m = m
-unit.секунда = unit.сек = unit.с = unit.s = 1000
-unit.миллисекунда = unit.мс = unit.ms = 1
-unit['микросекунда'] = unit['мкс'] = unit['μs'] = unit.us = 1e-3
-unit.наносекунда = unit.нс = unit.ns = 1e-6
+const unit = Object.create(en)
+
+unit.год = unit.г = en.y
+unit.месяц = unit.мес = en.month
+unit.неделя = unit.нед = en.w
+unit.день = unit.д = en.d
+unit.час = unit.ч = en.h
+unit.минута = unit.мин = en.m
+unit.секунда = unit.сек = en.s
+unit.миллисекунда = unit.мс = en.ms
+unit.микросекунда = unit.мкс = en.us
+unit.наносекунда = unit.нс = en.ns
 
 export default unit
