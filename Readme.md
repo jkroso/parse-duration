@@ -109,6 +109,4 @@ parse('1 hora 20 minutos', 'm') // => 80
 parse('1 hour 20 minutes', 'm') // => 80
 ```
 
----
-
-[ॐ](https://github.com/krishnized/license)
+<a href="https://github.com/krishnized/license" align="center">ॐ</a>
