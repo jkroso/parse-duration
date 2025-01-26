@@ -59,7 +59,6 @@ import parse from 'parse-duration'
 parse.unit = es
 
 parse('1 hora 20 minutos', 'm') // 80
-parse('1 hour 20 minutes', 'm') // 80 - extends english locale
 ```
 
 <p align="center"><a href="https://github.com/krishnized/license">ॐ</a></p>
