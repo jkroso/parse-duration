@@ -1,101 +1,65 @@
 
-# parse-duration [![Build Status](https://travis-ci.org/jkroso/parse-duration.svg?branch=master)](https://travis-ci.org/jkroso/parse-duration)
+# parse-duration [![Test](https://github.com/jkroso/parse-duration/actions/workflows/test.yml/badge.svg)](https://github.com/jkroso/parse-duration/actions/workflows/test.yml)
 
-  convert a human readable duration to ms
-
-## Installation
+Convert a human readable duration to ms.
 
 [![NPM](https://nodei.co/npm/parse-duration.png?mini=true)](https://npmjs.org/package/parse-duration)
 
-then in your app:
+## Usage
 
 ```js
 import parse from 'parse-duration'
-```
 
-or CommonJS:
+// parse different time units
+let ns = parse('1ns') // => 1 / 1e6
+let μs = parse('1μs') // => 1 / 1000
+let ms = parse('1ms') // => 1
+let s = parse('1s')   // => ms * 1000
+let m = parse('1m')   // => s * 60
+let h = parse('1h')   // => m * 60
+let d = parse('1d')   // => h * 24
+let w = parse('1w')   // => d * 7
+let y = parse('1y')   // => d * 365.25
 
-```js
-var parse = require('parse-duration')
-```
-
-## API
-
-### parse(str, format='ms')
-
-Convert `str` to ms
-
-```js
-var ns = parse('1ns') // => 1 / 1e6
-var μs = parse('1μs') // => 1 / 1000
-var ms = parse('1ms') // => 1
-var s = parse('1s')   // => ms * 1000
-var m = parse('1m')   // => s * 60
-var h = parse('1h')   // => m * 60
-var d = parse('1d')   // => h * 24
-var w = parse('1w')   // => d * 7
-var y = parse('1y')   // => d * 365.25
-```
-
-It can also handle basic compound expressions
-
-```js
+// compound expressions
 parse('1hr 20mins') // => 1 * h + 20 * m
 parse('1 hr 20 mins') // => 1 * h + 20 * m
-```
 
-youtube format
-
-```js
+// youtube format
 parse('1h20m0s') // => 1 * h + 20 * m
-```
 
-comma seperated numbers
-
-```js
+// comma seperated numbers
 parse('27,681 ns') // => 27681 * ns
-```
 
-And most other types of noise
-
-```js
+// noisy input
 parse('running length: 1hour:20mins') // => 1 * h + 20 * m
-```
 
-You can even use negatives
-
-```js
+// negatives
 parse('-1hr 40mins') // => 1 * h + 40 * m
-```
 
-And exponents
-
-```js
+// exponents
 parse('2e3s') // => 2000 * s
-```
 
-#### Available unit types are:
-
-- nanoseconds (ns)
-- microseconds (μs)
-- milliseconds (ms)
-- seconds (s, sec)
-- minutes (m, min)
-- hours (h, hr)
-- days (d)
-- weeks (w, wk)
-- months
-- years (y, yr)
-
-And its easy to add more, including unicode:
-
-```js
-parse['сек'] = parse['sec']
-parse('5сек') // => 5000
-```
-
-The output format can also be defined
-
-```js
+// custom output format
 parse('1hr 20mins', 'm') // => 80
+
+// add units
+parse.unit['μs'] = parse.unit.microsecond
+parse('5μs')       // => 0.005
 ```
+
+## Locales
+
+Switch the default en locale to another language ([see /locale](/locale)).
+
+```js
+import es from 'parse-duration/locale/es.js'
+import parse from 'parse-duration'
+
+parse.unit = es
+
+parse('1 hora 20 minutos', 'm') // 80
+parse('1 hour 20 minutes', 'm') // 80 - extends english locale
+```
+
+<p align="center"><a href="https://github.com/krishnized/license">ॐ</a></p>

@@ -1,9 +1,12 @@
 'use strict'
 
-let t = require('tape')
-let parse = require('./')
+import t from 'tape'
+import parse from './index.js'
+import es from './locale/es.js'
+import en from './locale/en.js'
+import de from './locale/de.js'
 
-let { ns, h, b, s, ms, d, y, m } = parse
+let { ns, h, b, s, ms, d, y, m } = parse.unit
 
 t('ms, millisecond, milliseconds', t => {
 	t.equal(parse('100ms'), 100)
@@ -104,8 +107,16 @@ t('invalid', t => {
 	t.equal(parse('abc'), null)
 	t.equal(parse(), null)
 	t.equal(parse('I have 2 mangoes and 5 apples'), null)
+	t.end()
+})
+
+t('invalid: prototype names', t => {
 	t.equal(parse('2call 3apply'), null)
 	t.equal(parse('1arguments'), null)
+	t.equal(parse('1arguments'), null)
+	t.equal(parse('1constructor'), null)
+	t.equal(parse('1call'), null)
+	t.equal(parse('1name'), null)
 
 	t.end()
 })
@@ -126,7 +137,7 @@ t('format', t => {
 })
 
 t('unicode support', t => {
-	parse['сек'] = parse['s'] // ru seconds
+	parse.unit['сек'] = parse.unit['s'] // ru seconds
 	t.equal(parse('5сек'), 5000)
 	t.end()
 })
@@ -140,5 +151,27 @@ t('unit guessing', t => {
 t('upper-case characters', t => {
 	t.equal(parse('1 MINUTE'), 60000)
 	t.equal(parse('1MS'), 1)
+	t.end()
+})
+
+t('locales', t => {
+	parse.unit = es
+	t.equal(parse('1 hora 20 minutos', 'm'), 80)
+	t.end()
+})
+
+t('locale separators', t => {
+	parse.unit = en
+	t.equal(parse('3.14 seconds'), 3140)
+	t.equal(parse('"1,23,456.789 seconds'), 123456789)
+	t.equal(parse('"1,23,456.789s'), 123456789)
+	t.equal(parse('"30,000.65 seconds'), 30000650)
+
+	parse.unit = de
+	t.equal(parse('3,14 seconds'), 3140)
+	t.equal(parse('"123.456,789 seconds'), 123456789)
+	t.equal(parse('"30.000,65 seconds'), 30000650)
+	t.equal(parse('"30 000,65 seconds'), 30000650)
+	t.equal(parse('"30_000,65 seconds'), 30000650)
 	t.end()
 })
