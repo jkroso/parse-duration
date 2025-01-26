@@ -13,4 +13,7 @@ unit.миллисекунда = unit.мс = en.ms
 unit.микросекунда = unit.мкс = en.us
 unit.наносекунда = unit.нс = en.ns
 
+unit.group = ' '
+unit.decimal = ','
+
 export default unit

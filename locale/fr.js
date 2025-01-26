@@ -13,4 +13,7 @@ unit.milliseconde = en.ms
 unit.microseconde = en.us
 unit.nanoseconde = en.ns
 
+unit.group = ' '
+unit.decimal = ','
+
 export default unit

@@ -13,4 +13,7 @@ unit.毫秒 = en.ms
 unit.微秒 = en.us
 unit.纳秒 = en.ns
 
+unit.group = ','
+unit.decimal = '.'
+
 export default unit

@@ -13,4 +13,7 @@ unit.ミリ秒 = en.ms
 unit.マイクロ秒 = en.us
 unit.ナノ秒 = en.ns
 
+unit.group = ','
+unit.decimal = '.'
+
 export default unit

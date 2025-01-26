@@ -15,7 +15,11 @@ parse.unit = en
 export default function parse(str = '', format = 'ms') {
   let result = null, prevUnits
   // ignore commas/placeholders
-  str = (str + '').replace(/(\d)[,_](\d)/g, '$1$2')
+  str = (str + '')
+    .replace(/(\d)[_ ](\d)/g, '$1$2')  // ignore placeholders
+    .replaceAll(parse.unit.group, '')        // remove group separator
+    .replaceAll(parse.unit.decimal, '.')     // normalize decimal separator
+
   str.replace(durationRE, (_, n, units) => {
     // if no units, find next smallest units or fall back to format value (ms)
     if (!units) {

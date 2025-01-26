@@ -3,6 +3,8 @@
 import t from 'tape'
 import parse from './index.js'
 import es from './locale/es.js'
+import en from './locale/en.js'
+import de from './locale/de.js'
 
 let { ns, h, b, s, ms, d, y, m } = parse.unit
 
@@ -155,5 +157,21 @@ t('upper-case characters', t => {
 t('locales', t => {
 	parse.unit = es
 	t.equal(parse('1 hora 20 minutos', 'm'), 80)
+	t.end()
+})
+
+t('locale separators', t => {
+	parse.unit = en
+	t.equal(parse('3.14 seconds'), 3140)
+	t.equal(parse('"1,23,456.789 seconds'), 123456789)
+	t.equal(parse('"1,23,456.789s'), 123456789)
+	t.equal(parse('"30,000.65 seconds'), 30000650)
+
+	parse.unit = de
+	t.equal(parse('3,14 seconds'), 3140)
+	t.equal(parse('"123.456,789 seconds'), 123456789)
+	t.equal(parse('"30.000,65 seconds'), 30000650)
+	t.equal(parse('"30 000,65 seconds'), 30000650)
+	t.equal(parse('"30_000,65 seconds'), 30000650)
 	t.end()
 })

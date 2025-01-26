@@ -12,4 +12,7 @@ unit.millisecond = unit.millisec = unit.ms = 1
 unit.µs = unit.μs = unit.us = unit.microsecond = 1e-3
 unit.nanosecond = unit.ns = 1e-6
 
+unit.group = ','
+unit.decimal = '.'
+
 export default unit
