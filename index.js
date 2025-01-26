@@ -1,6 +1,6 @@
 import en from './locale/en.js'
 
-let durationRE = /(-?(?:\d+\.?\d*|\d*\.?\d+)(?:e[-+]?\d+)?)\s*([\p{L}]*)/uig
+const durationRE = /(-?(?:\d+\.?\d*|\d*\.?\d+)(?:e[-+]?\d+)?)\s*([\p{L}]*)/uig
 
 parse.unit = en
 
@@ -11,17 +11,16 @@ parse.unit = en
  * @param {String} format
  * @return {Number}
  */
-
 export default function parse(str = '', format = 'ms') {
   let result = null, prevUnits
-  // ignore commas/placeholders
-  str = (str + '')
-    .replace(/(\d)[_ ](\d)/g, '$1$2')  // ignore placeholders
-    .replaceAll(parse.unit.group, '')        // remove group separator
-    .replaceAll(parse.unit.decimal, '.')     // normalize decimal separator
 
-  str.replace(durationRE, (_, n, units) => {
-    // if no units, find next smallest units or fall back to format value (ms)
+  (str + '')
+    .replace(/(\d)[_ ](\d)/g, '$1$2')     // ignore placeholders
+    .replaceAll(parse.unit.group, '')     // remove group separator
+    .replaceAll(parse.unit.decimal, '.')  // normalize decimal separator
+    .replace(durationRE, (_, n, units) => {
+    // if no units, find next smallest units or fall back to format value
+    // eg. 1h30 -> 1h30m
     if (!units) {
       if (prevUnits) {
         for (var u in parse.unit) if (parse.unit[u] < prevUnits) { units = u; break }
