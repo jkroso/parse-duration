@@ -9,7 +9,7 @@ unit.hour = unit.hr = unit.h = h
 unit.minute = unit.min = unit.m = m
 unit.second = unit.sec = unit.s = 1000
 unit.millisecond = unit.millisec = unit.ms = 1
-unit.microsecond = unit.microsec =  unit.us = unit.µs = unit.μs = 1e-3
+unit.microsecond = unit.microsec =  unit.us = unit.µs = 1e-3
 unit.nanosecond = unit.nanosec = unit.ns = 1e-6
 
 unit.group = ','
