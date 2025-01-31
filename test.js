@@ -6,7 +6,7 @@ import es from './locale/es.js'
 import en from './locale/en.js'
 import de from './locale/de.js'
 
-let { ns, h, b, s, ms, d, y, m } = parse.unit
+let { ns, h, mo, s, ms, d, y, m } = parse.unit
 
 t('ms, millisecond, milliseconds', t => {
 	t.equal(parse('100ms'), 100)
@@ -58,8 +58,9 @@ t('w, wk, wks, week, weeks', t => {
 
 	t.end()
 })
-t('b, month, months', t => {
-	t.equal(parse('1b'), 24 * 60 * 60 * 1000 * 365.25 / 12)
+t('mth, month, months', t => {
+	t.equal(parse('1mth'), 24 * 60 * 60 * 1000 * 365.25 / 12)
+	t.equal(parse('1mo'), 24 * 60 * 60 * 1000 * 365.25 / 12)
 	t.equal(parse('1month'), 24 * 60 * 60 * 1000 * 365.25 / 12)
 	t.equal(parse('1months'), 24 * 60 * 60 * 1000 * 365.25 / 12)
 
@@ -98,8 +99,8 @@ t('combined', t => {
 })
 
 t('edge cases', t => {
-	t.equal(parse('1y.2b.5days.12hours.34sec.20ms'), 1 * y + .2 * b + .5 * d + .12 * h + .34 * s + .20 * ms)
-	t.equal(parse('-1y.2b.5days 12hours,34sec,20ms'), -1 * y - .2 * b - .5 * d - 12 * h - 34 * s - 20 * ms)
+	t.equal(parse('1y.2mo.5days.12hours.34sec.20ms'), 1 * y + .2 * mo + .5 * d + .12 * h + .34 * s + .20 * ms)
+	t.equal(parse('-1y.2mth.5days 12hours,34sec,20ms'), -1 * y - .2 * mo - .5 * d - 12 * h - 34 * s - 20 * ms)
 	t.end()
 })
 
