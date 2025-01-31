@@ -32,6 +32,6 @@ declare namespace parse {
  * @param {string} format - The format to use for conversion (default is 'ms').
  * @returns {number} - The parsed duration in milliseconds.
  */
-declare function parse(str?: string, format?: string): number;
+declare function parse(str?: string, format?: string): number | null;
 
 export default parse;
