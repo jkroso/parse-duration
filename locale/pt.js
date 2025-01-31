@@ -3,7 +3,7 @@ import en from './en.js'
 const unit = Object.create(en)
 
 unit.ano = unit.a = en.y
-unit.mês = unit.mes = en.month
+unit.mês = unit.mes = en.mo
 unit.semana = unit.sem = en.w
 unit.dia = en.d
 unit.hora = en.h

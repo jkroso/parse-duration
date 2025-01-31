@@ -3,7 +3,7 @@ import en from './en.js'
 const unit = Object.create(en)
 
 unit.年 = en.y
-unit.月 = en.month
+unit.月 = en.mo
 unit.周 = unit.星期 = en.w
 unit.天 = unit.日 = en.d
 unit.小时 = unit.时 = en.h
