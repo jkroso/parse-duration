@@ -36,7 +36,7 @@ parse('27,681 ns')          // => 27681 * ns
 parse('duration: 1h:20min') // => 1 * h + 20 * m
 
 // negatives
-parse('-1hr 40mins')        // => 1 * h + 40 * m
+parse('-1hr 40mins')        // => -1 * h - 40 * m
 
 // exponents
 parse('2e3s')               // => 2000 * s
