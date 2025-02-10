@@ -1,6 +1,6 @@
 import en from './locale/en.js'
 
-const durationRE = /(-?(?:\d+\.?\d*|\d*\.?\d+)(?:e[-+]?\d+)?)\s*([\p{L}]*)/uig
+const durationRE = /(-?(?:\d{1,16}(?:\.\d{1,16})?|\.\d{1,16})(?:[eE][-+]?\d{1,4})?)\s?([\p{L}]{0,14})/gu
 
 parse.unit = en
 
@@ -12,6 +12,9 @@ parse.unit = en
  * @return {Number}
  */
 export default function parse(str = '', format = 'ms') {
+  // 10KB limit
+  // if (str.length > 10 * 1024) throw new Error("Input exceeds maximum allowed length");
+
   let result = null, prevUnits
 
   (str + '')
