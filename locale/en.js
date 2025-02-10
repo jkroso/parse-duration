@@ -14,5 +14,6 @@ unit.nanosecond = unit.nanosec = unit.ns = 1e-6
 
 unit.group = ','
 unit.decimal = '.'
+unit.placeholder = ' _'
 
 export default unit

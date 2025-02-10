@@ -12,15 +12,11 @@ parse.unit = en
  * @return {Number}
  */
 export default function parse(str = '', format = 'ms') {
-  // 10KB limit
-  // if (str.length > 10 * 1024) throw new Error("Input exceeds maximum allowed length");
-
   let result = null, prevUnits
 
-  (str + '')
-    .replace(/(\d)[_ ](\d)/g, '$1$2')     // ignore placeholders
-    .replaceAll(parse.unit.group, '')     // remove group separator
-    .replaceAll(parse.unit.decimal, '.')  // normalize decimal separator
+  String(str)
+    .replace(new RegExp(`(?<=\\d)[${parse.unit.placeholder}${parse.unit.group}](?=\\d)`, 'g'), '')  // clean up group separators / placeholders
+    .replace(parse.unit.decimal, '.') // normalize decimal separator
     .replace(durationRE, (_, n, units) => {
     // if no units, find next smallest units or fall back to format value
     // eg. 1h30 -> 1h30m
