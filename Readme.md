@@ -62,4 +62,24 @@ parse.unit = es
 parse('1 hora 20 minutos', 'm') // 80
 ```
 
+
+## Security Note
+
+To avoid issues with long strings in sensitive APIs, limit input length:
+
+```js
+const MAX_INPUT_LENGTH = 100;
+
+function safeParse(input) {
+  if (input.length > MAX_INPUT_LENGTH) {
+    throw new Error('Input string is too long');
+  }
+  return parseDuration(input);
+}
+
+safeParse('1hr 20mins'); // => 1 * h + 20 * m
+```
+
+
+
 <p align="center"><a href="https://github.com/krishnized/license">ॐ</a></p>
