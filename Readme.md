@@ -63,9 +63,9 @@ parse('1 hora 20 minutos', 'm') // 80
 ```
 
 
-## Security Note
+## Safety
 
-To avoid issues with long strings in sensitive APIs, limit input length:
+For best performance in sensitive APIs input can be kept short:
 
 ```js
 const MAX_INPUT_LENGTH = 100;
