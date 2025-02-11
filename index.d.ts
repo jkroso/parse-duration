@@ -22,7 +22,7 @@ declare module './locale/*.js' {
 declare const durationRE: RegExp;
 
 declare namespace parse {
-  const unit: Units;
+  let unit: Units;
 }
 
 /**
