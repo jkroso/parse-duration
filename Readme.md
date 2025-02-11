@@ -65,20 +65,7 @@ parse('1 hora 20 minutos', 'm') // 80
 
 ## Safety
 
-For best performance in sensitive APIs input can be kept short:
-
-```js
-const MAX_INPUT_LENGTH = 100;
-
-function safeParse(input) {
-  if (input.length > MAX_INPUT_LENGTH) {
-    throw new Error('Input string is too long');
-  }
-  return parseDuration(input);
-}
-
-safeParse('1hr 20mins'); // => 1 * h + 20 * m
-```
+For best performance in sensitive APIs make sure input string is reasonably short (under 100 characters).
 
 
 
