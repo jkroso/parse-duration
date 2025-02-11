@@ -65,7 +65,7 @@ parse('1 hora 20 minutos', 'm') // 80
 
 ## Safety
 
-For best performance in sensitive APIs make sure input string is reasonably short (under 100 characters).
+In sensitive APIs make sure input string is reasonably short (under 100 characters).
 
 
 
