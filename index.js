@@ -9,7 +9,7 @@ parse.unit = en
  *
  * @param {string} str
  * @param {string} format
- * @return {number}
+ * @return {number|null}
  */
 export default function parse(str = '', format = 'ms') {
   let result = null, prevUnits
