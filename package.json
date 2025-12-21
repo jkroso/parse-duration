@@ -1,6 +1,6 @@
 {
   "name": "parse-duration",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Convert a human readable duration string to a duration format",
   "keywords": [
     "parse",
