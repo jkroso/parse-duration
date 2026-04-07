@@ -11,6 +11,7 @@
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
+  "sideEffects": false,
   "dependencies": {},
   "devDependencies": {
     "tape": "^4.8.0"
