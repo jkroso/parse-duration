@@ -177,5 +177,8 @@ t('locale separators', t => {
 	t.equal(parse('30.000,65 seconds'), 30000650)
 	t.equal(parse('30 000,65 seconds'), 30000650)
 	t.equal(parse('30_000,65 seconds'), 30000650)
+	// every component's decimal separator must be normalized, not just the first
+	t.equal(parse('1,5 s 1,5 s'), 3000)
+	t.equal(parse('2,5h 3,5h'), 21600000)
 	t.end()
 })
