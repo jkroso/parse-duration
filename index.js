@@ -16,7 +16,7 @@ export default function parse(str = '', format = 'ms') {
 
   String(str)
     .replace(new RegExp(`(\\d)[${parse.unit.placeholder}${parse.unit.group}](\\d)`, 'g'), '$1$2')  // clean up group separators / placeholders
-    .replace(parse.unit.decimal, '.') // normalize decimal separator
+    .replaceAll(parse.unit.decimal, '.') // normalize decimal separator
     .replace(durationRE, (_, n, units) => {
     // if no units, find next smallest units or fall back to format value
     // eg. 1h30 -> 1h30m
