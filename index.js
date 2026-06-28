@@ -33,5 +33,5 @@ export default function parse(str = '', format = 'ms') {
     if (units) result = (result || 0) + n * units
   })
 
-  return result && ((result / (parse.unit[format] || 1)) * (str[0] === '-' ? -1 : 1))
+  return result && ((result / (parse.unit[format] || 1)) * (/^\s*-/.test(str) ? -1 : 1))
 }
