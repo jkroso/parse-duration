@@ -104,6 +104,13 @@ t('combined', t => {
 	t.end()
 })
 
+t('whitespace between value and unit', t => {
+	t.equal(parse('5  s'), 5 * s)
+	t.equal(parse('10   m'), 10 * m)
+	t.equal(parse('2\t\th'), 2 * h)
+	t.end()
+})
+
 t('edge cases', t => {
 	t.equal(parse('1y.2mo.5days.12hours.34sec.20ms'), 1 * y + .2 * mo + .5 * d + .12 * h + .34 * s + .20 * ms)
 	t.equal(parse('-1y.2mth.5days 12hours,34sec,20ms'), -1 * y - .2 * mo - .5 * d - 12 * h - 34 * s - 20 * ms)
