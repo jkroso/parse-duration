@@ -30,7 +30,7 @@ export default function parse(str = '', format = 'ms') {
 
     prevUnits = units = parse.unit[units] || parse.unit[units.replace(/s$/, '')]
 
-    if (units) result = (result || 0) + n * units
+    if (typeof units == 'number') result = (result || 0) + n * units
   })
 
   return result && ((result / (parse.unit[format] || 1)) * (String(str).trimStart()[0] === '-' ? -1 : 1))

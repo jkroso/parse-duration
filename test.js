@@ -128,6 +128,14 @@ t('invalid: prototype names', t => {
 	t.end()
 })
 
+t('invalid: unit config keys', t => {
+	t.equal(parse('1group'), null)
+	t.equal(parse('1decimal'), null)
+	t.equal(parse('1placeholder'), null)
+
+	t.end()
+})
+
 t('no-units', t => {
 	t.equal(parse(1), 1)
 	t.equal(parse(`1`), 1)
