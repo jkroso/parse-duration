@@ -18,7 +18,7 @@ export default function parse(str = '', format = 'ms') {
   let result = null, prevUnits, unit = parse.unit
 
   if (unit.placeholder !== placeholder || unit.group !== group)
-    groupRE = new RegExp(`(\\d)[${placeholder = unit.placeholder}${group = unit.group}](\\d)`, 'g')
+    groupRE = new RegExp(`(\\d)[${(placeholder = unit.placeholder) ?? ''}${(group = unit.group) ?? ''}](\\d)`, 'g')
 
   str = String(str)
   let s = str.replace(groupRE, '$1$2') // clean up group separators / placeholders

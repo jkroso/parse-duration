@@ -200,3 +200,13 @@ t('locale separators', t => {
 	t.equal(parse('2,5h 3,5h'), 21600000)
 	t.end()
 })
+
+t('custom locale without group/placeholder', t => {
+	const unit = Object.create(null)
+	unit.s = 1000
+	unit.decimal = '.'
+	parse.unit = unit
+	t.equal(parse('1u2s'), 2000) // letters from a leaked 'undefined' must not merge digits
+	parse.unit = en
+	t.end()
+})
