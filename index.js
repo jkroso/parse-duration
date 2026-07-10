@@ -4,6 +4,9 @@ const durationRE = /((?:\d{1,16}(?:\.\d{1,16})?|\.\d{1,16})(?:[eE][-+]?\d{1,4})?
 
 parse.unit = en
 
+// group/placeholder cleanup regex — rebuilt only when the locale strings change
+let groupRE, placeholder = null, group
+
 /**
  * convert `str` to ms
  *
@@ -12,26 +15,32 @@ parse.unit = en
  * @return {number|null}
  */
 export default function parse(str = '', format = 'ms') {
-  let result = null, prevUnits
+  let result = null, prevUnits, unit = parse.unit
 
-  String(str)
-    .replace(new RegExp(`(\\d)[${parse.unit.placeholder}${parse.unit.group}](\\d)`, 'g'), '$1$2')  // clean up group separators / placeholders
-    .replaceAll(parse.unit.decimal, '.') // normalize decimal separator
-    .replace(durationRE, (_, n, units) => {
+  if (unit.placeholder !== placeholder || unit.group !== group)
+    groupRE = new RegExp(`(\\d)[${placeholder = unit.placeholder}${group = unit.group}](\\d)`, 'g')
+
+  str = String(str)
+  let s = str.replace(groupRE, '$1$2') // clean up group separators / placeholders
+  if (unit.decimal !== '.') s = s.replaceAll(unit.decimal, '.') // normalize decimal separator
+
+  durationRE.lastIndex = 0
+  for (let m; (m = durationRE.exec(s));) {
+    let units = m[2]
     // if no units, find next smallest units or fall back to format value
     // eg. 1h30 -> 1h30m
     if (!units) {
       if (prevUnits) {
-        for (const u in parse.unit) if (parse.unit[u] < prevUnits) { units = u; break }
+        for (const u in unit) if (unit[u] < prevUnits) { units = u; break }
       }
       else units = format
     }
     else units = units.toLowerCase()
 
-    prevUnits = units = parse.unit[units] || parse.unit[units.replace(/s$/, '')]
+    prevUnits = units = unit[units] || (units.endsWith('s') ? unit[units.slice(0, -1)] : undefined)
 
-    if (typeof units == 'number') result = (result || 0) + n * units
-  })
+    if (typeof units == 'number') result = (result || 0) + m[1] * units
+  }
 
-  return result && ((result / (parse.unit[format] || 1)) * (String(str).trimStart()[0] === '-' ? -1 : 1))
+  return result && ((result / (unit[format] || 1)) * (str.trimStart()[0] === '-' ? -1 : 1))
 }
