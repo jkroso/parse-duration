@@ -210,3 +210,10 @@ t('custom locale without group/placeholder', t => {
 	parse.unit = en
 	t.end()
 })
+
+t('numbers with long digit runs are not split into separate matches', t => {
+	t.equal(parse('0.30000000000000004s'), 0.30000000000000004 * 1000)
+	t.equal(parse('0.12345678901234567s'), 0.12345678901234567 * 1000)
+	t.equal(parse('12345678901234567ms'), 12345678901234567)
+	t.end()
+})

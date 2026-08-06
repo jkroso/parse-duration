@@ -1,6 +1,6 @@
 import en from './locale/en.js'
 
-const durationRE = /((?:\d{1,16}(?:\.\d{1,16})?|\.\d{1,16})(?:[eE][-+]?\d{1,4})?)\s*([\p{L}]{0,14})/gu
+const durationRE = /((?:\d+(?:\.\d+)?|\.\d+)(?:[eE][-+]?\d+)?)\s*([\p{L}]{0,14})/gu
 
 parse.unit = en
 
