@@ -158,6 +158,23 @@ t('format', t => {
 	t.end()
 })
 
+t('format is matched like an input unit', t => {
+	// upper-case, exactly as accepted on the input side (`parse('2MIN')`)
+	t.equal(parse('2h', 'M'), 120)
+	t.equal(parse('2h', 'MIN'), 120)
+	t.equal(parse('2h', 'Hours'), 2)
+
+	// plural, matching `unit.endsWith('s')` handling on the input side
+	t.equal(parse('2h', 'mins'), 120)
+	t.equal(parse('2h', 'hrs'), 2)
+	t.equal(parse('2h', 'seconds'), 7200)
+
+	// an unknown format still falls back to ms
+	t.equal(parse('2h', 'bogus'), 7200000)
+
+	t.end()
+})
+
 t('unicode support', t => {
 	parse.unit['сек'] = parse.unit['s'] // ru seconds
 	t.equal(parse('5сек'), 5000)

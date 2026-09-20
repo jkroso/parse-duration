@@ -43,6 +43,7 @@ parse('2e3s')               // => 2000 * s
 
 // custom output format
 parse('1hr 20mins', 'm')    // => 80
+parse('1hr 20mins', 'MINS') // => 80, same matching rules as input units
 
 // add units
 parse.unit['μs'] = parse.unit.microsecond

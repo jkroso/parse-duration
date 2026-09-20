@@ -8,6 +8,18 @@ parse.unit = en
 let groupRE, placeholder = null, group
 
 /**
+ * look up a unit name, ignoring case and a trailing plural `s`
+ *
+ * @param {object} unit
+ * @param {string} name
+ * @return {number|undefined}
+ */
+const lookupUnit = (unit, name) => {
+  name = String(name).toLowerCase()
+  return unit[name] ?? (name.endsWith('s') ? unit[name.slice(0, -1)] : undefined)
+}
+
+/**
  * convert `str` to ms
  *
  * @param {string} str
@@ -35,12 +47,11 @@ export default function parse(str = '', format = 'ms') {
       }
       else units = format
     }
-    else units = units.toLowerCase()
 
-    prevUnits = units = unit[units] || (units.endsWith('s') ? unit[units.slice(0, -1)] : undefined)
+    prevUnits = units = lookupUnit(unit, units)
 
     if (typeof units == 'number') result = (result || 0) + m[1] * units
   }
 
-  return result && ((result / (unit[format] || 1)) * (str.trimStart()[0] === '-' ? -1 : 1))
+  return result && ((result / (lookupUnit(unit, format) || 1)) * (str.trimStart()[0] === '-' ? -1 : 1))
 }
