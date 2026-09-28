@@ -117,6 +117,16 @@ t('edge cases', t => {
 	t.end()
 })
 
+t('trailing decimal point with no fraction digits', t => {
+	// a bare `.` right after the integer part must not swallow the unit
+	// that follows it, e.g. "5. seconds" should behave like "5 seconds"
+	t.equal(parse('5. seconds'), 5 * s)
+	t.equal(parse('5.seconds'), 5 * s)
+	t.equal(parse('5. secs'), parse('5 secs'))
+	t.equal(parse('-5. secs'), -5 * s)
+	t.end()
+})
+
 t('invalid', t => {
 	t.equal(parse('abc'), null)
 	t.equal(parse(), null)
