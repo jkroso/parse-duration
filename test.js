@@ -215,6 +215,9 @@ t('locale separators', t => {
 	t.equal(parse('1,23,456.789 seconds'), 123456789)
 	t.equal(parse('1,23,456.789s'), 123456789)
 	t.equal(parse('30,000.65 seconds'), 30000650)
+	// separators between single digits must all be removed
+	t.equal(parse('1_2_3s'), 123000)
+	t.equal(parse('1,2,3s'), 123000)
 
 	parse.unit = de
 	t.equal(parse('3,14 seconds'), 3140)
@@ -222,6 +225,7 @@ t('locale separators', t => {
 	t.equal(parse('30.000,65 seconds'), 30000650)
 	t.equal(parse('30 000,65 seconds'), 30000650)
 	t.equal(parse('30_000,65 seconds'), 30000650)
+	t.equal(parse('1.2.3,5s'), 123500)
 	// every component's decimal separator must be normalized, not just the first
 	t.equal(parse('1,5 s 1,5 s'), 3000)
 	t.equal(parse('2,5h 3,5h'), 21600000)
