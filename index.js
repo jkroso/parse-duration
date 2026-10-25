@@ -30,10 +30,10 @@ export default function parse(str = '', format = 'ms') {
   let result = null, prevUnits, unit = parse.unit
 
   if (unit.placeholder !== placeholder || unit.group !== group)
-    groupRE = new RegExp(`(\\d)[${(placeholder = unit.placeholder) ?? ''}${(group = unit.group) ?? ''}](\\d)`, 'g')
+    groupRE = new RegExp(`(\\d)[${(placeholder = unit.placeholder) ?? ''}${(group = unit.group) ?? ''}](?=\\d)`, 'g')
 
   str = String(str)
-  let s = str.replace(groupRE, '$1$2') // clean up group separators / placeholders
+  let s = str.replace(groupRE, '$1') // clean up group separators / placeholders
   if (unit.decimal !== '.') s = s.replaceAll(unit.decimal, '.') // normalize decimal separator
 
   durationRE.lastIndex = 0
