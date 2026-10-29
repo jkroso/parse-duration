@@ -29,6 +29,11 @@ parse('1 hr 20 mins')       // => 1 * h + 20 * m
 // youtube format
 parse('1h20m0s')            // => 1 * h + 20 * m
 
+// clock format, last segment is seconds
+parse('1:30:00')            // => 1 * h + 30 * m
+parse('1:30')               // => 1 * m + 30 * s
+parse('1:30 h')             // => 1 * h + 30 * m, units name the first segment
+
 // comma seperated numbers
 parse('27,681 ns')          // => 27681 * ns
 

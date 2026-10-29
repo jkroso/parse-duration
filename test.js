@@ -197,6 +197,32 @@ t('unit guessing', t => {
 	t.end()
 })
 
+t('clock format', t => {
+	// [h:]m:ss, last segment is seconds, as ffmpeg time duration [-][HH:]MM:SS[.m...]
+	t.equal(parse('1:30:00'), 1 * h + 30 * m)
+	t.equal(parse('1:30:00', 's'), 5400)
+	t.equal(parse('1:30'), 1 * m + 30 * s)
+	t.equal(parse('0:30'), 30 * s)
+	t.equal(parse('1:00'), 1 * m)
+	t.equal(parse('00:00'), 0)
+	t.equal(parse('90:00'), 90 * m)
+	t.equal(parse('1:30.5'), 90.5 * s)
+	t.equal(parse('1:02:03.004'), h + 2 * m + 3 * s + 4 * ms)
+	t.equal(parse('-1:30'), -90 * s)
+	// units name the first segment, the rest descend
+	t.equal(parse('1:30 h'), 1 * h + 30 * m)
+	t.equal(parse('1:30min'), 1 * m + 30 * s)
+	t.equal(parse('1:12 days'), 1 * d + 12 * h)
+	// combined with units
+	t.equal(parse('2d 1:30:00'), 2 * d + 1 * h + 30 * m)
+	t.equal(parse('duration: 1:30:00'), 1 * h + 30 * m)
+	t.equal(parse('running length: 1hour:20mins'), 1 * h + 20 * m)
+	parse.unit = de
+	t.equal(parse('1:30,5'), 90.5 * s)
+	parse.unit = en
+	t.end()
+})
+
 t('upper-case characters', t => {
 	t.equal(parse('1 MINUTE'), 60000)
 	t.equal(parse('1MS'), 1)
