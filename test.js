@@ -5,6 +5,7 @@ import parse from './index.js'
 import es from './locale/es.js'
 import en from './locale/en.js'
 import de from './locale/de.js'
+import ru from './locale/ru.js'
 
 let { ns, h, mo, s, ms, d, y, m } = parse.unit
 
@@ -232,6 +233,52 @@ t('upper-case characters', t => {
 t('locales', t => {
 	parse.unit = es
 	t.equal(parse('1 hora 20 minutos', 'm'), 80)
+	parse.unit = en
+	t.end()
+})
+
+t('locale plural forms', t => {
+	parse.unit = de
+	t.equal(parse('1 Stunde 30 Minuten', 'm'), 90)
+	t.equal(parse('2 Jahre'), 2 * y)
+	t.equal(parse('in 2 Jahren'), 2 * y)
+	t.equal(parse('3 Monate'), 3 * mo)
+	t.equal(parse('vor 3 Monaten'), 3 * mo)
+	t.equal(parse('2 Wochen', 'd'), 14)
+	t.equal(parse('3 Tage'), 3 * d)
+	t.equal(parse('vor 3 Tagen'), 3 * d)
+	t.equal(parse('2 Stunden'), 2 * h)
+	t.equal(parse('10 Sekunden'), 10 * s)
+	t.equal(parse('5 Millisekunden'), 5)
+	t.equal(parse('5 Mikrosekunden'), 5e-3)
+	t.equal(parse('5 Nanosekunden'), 5 * ns)
+
+	parse.unit = ru
+	t.equal(parse('1 час 30 минут', 'm'), 90)
+	t.equal(parse('2 года'), 2 * y)
+	t.equal(parse('5 лет'), 5 * y)
+	t.equal(parse('2 месяца'), 2 * mo)
+	t.equal(parse('5 месяцев'), 5 * mo)
+	t.equal(parse('1 неделю', 'd'), 7)
+	t.equal(parse('2 недели', 'd'), 14)
+	t.equal(parse('5 недель', 'd'), 35)
+	t.equal(parse('2 дня'), 2 * d)
+	t.equal(parse('5 дней'), 5 * d)
+	t.equal(parse('2 часа'), 2 * h)
+	t.equal(parse('5 часов'), 5 * h)
+	t.equal(parse('1 минуту'), m)
+	t.equal(parse('2 минуты'), 2 * m)
+	t.equal(parse('1 секунду'), s)
+	t.equal(parse('2 секунды'), 2 * s)
+	t.equal(parse('10 секунд'), 10 * s)
+	t.equal(parse('5 миллисекунд'), 5)
+	t.equal(parse('2 микросекунды'), 2e-3)
+	t.equal(parse('5 наносекунд'), 5 * ns)
+
+	parse.unit = es
+	t.equal(parse('2 meses'), 2 * mo)
+
+	parse.unit = en
 	t.end()
 })
 
