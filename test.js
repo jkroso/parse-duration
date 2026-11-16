@@ -321,3 +321,20 @@ t('numbers with long digit runs are not split into separate matches', t => {
 	t.equal(parse('12345678901234567ms'), 12345678901234567)
 	t.end()
 })
+
+
+t('unit guessing follows descending locale unit order', t => {
+	const unit = { h: 3600000, m: 60000, s: 1000, tick: 500, ticks: 500, ms: 1, decimal: '.' }
+	parse.unit = unit
+	try {
+		t.equal(parse('1h30'), 5400000)
+		t.equal(parse('1:30'), 90000)
+		t.equal(parse('1:30 h'), 5400000)
+		t.equal(parse('1h30', 'm'), 90)
+		t.equal(parse('1s2'), 2000)
+		t.equal(parse('1tick2'), 502)
+		t.equal(parse('1ms2'), 1) // no smaller unit is available
+		t.equal(parse('1h30m'), 5400000) // explicit units keep their meaning
+	} finally { parse.unit = en }
+	t.end()
+})
