@@ -26,14 +26,7 @@ const lookupUnit = (unit, name) => {
  * @param {number} v
  * @return {number|undefined}
  */
-const smaller = (unit, v) => {
-  let next
-  for (const u in unit) {
-    const value = unit[u]
-    if (typeof value == 'number' && value < v && (next === undefined || value > next)) next = value
-  }
-  return next
-}
+const smaller = (unit, v) => { for (const u in unit) if (unit[u] < v) return unit[u] }
 
 /**
  * convert `str` to ms

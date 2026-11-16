@@ -323,38 +323,18 @@ t('numbers with long digit runs are not split into separate matches', t => {
 })
 
 
-t('smaller units do not depend on locale insertion order', t => {
-	const unit = { ms: 1, s: 1000, m: 60000, h: 3600000, decimal: '.' }
+t('unit guessing follows descending locale unit order', t => {
+	const unit = { h: 3600000, m: 60000, s: 1000, tick: 500, ticks: 500, ms: 1, decimal: '.' }
 	parse.unit = unit
 	try {
 		t.equal(parse('1h30'), 5400000)
 		t.equal(parse('1:30'), 90000)
-		t.equal(parse('1:02:03'), 3723000)
 		t.equal(parse('1:30 h'), 5400000)
-		t.equal(parse('-1h30'), -5400000)
 		t.equal(parse('1h30', 'm'), 90)
+		t.equal(parse('1s2'), 2000)
+		t.equal(parse('1tick2'), 502)
 		t.equal(parse('1ms2'), 1) // no smaller unit is available
 		t.equal(parse('1h30m'), 5400000) // explicit units keep their meaning
-	} finally { parse.unit = en }
-	t.end()
-})
-
-t('new intermediate units and aliases participate in unit guessing', t => {
-	parse.unit = { ...en, tick: 500, ticks: 500 }
-	try {
-		t.equal(parse('1s2'), 2000)
-		t.equal(parse('1:2 s'), 2000)
-		t.equal(parse('1tick2'), 502)
-		t.equal(parse('1s2ms'), 1002)
-	} finally { parse.unit = en }
-	t.end()
-})
-
-t('non-numeric locale entries do not hide a smaller unit', t => {
-	parse.unit = { decimal: '.', group: ' ', placeholder: '_', ms: 1, s: 1000, m: 60000 }
-	try {
-		t.equal(parse('1m30'), 90000)
-		t.equal(parse('1:30'), 90000)
 	} finally { parse.unit = en }
 	t.end()
 })

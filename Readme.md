@@ -68,6 +68,7 @@ parse.unit = es
 parse('1 hora 20 minutos', 'm') // 80
 ```
 
+For unit guessing in inputs such as `1h30`, order numeric unit entries in custom locales from largest to smallest, keeping aliases next to their matching unit. Put new units that should be inferred at the matching position. Adding an alias for an existing unit to the built-in locale, as above, does not change unit guessing.
 
 ## Safety
 
