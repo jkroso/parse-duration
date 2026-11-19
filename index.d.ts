@@ -1,4 +1,4 @@
-type Units = {
+export type Units = {
   y: 31557600000
   mo: 2629800000
   w: 604800000
@@ -13,12 +13,8 @@ type Units = {
 } & {
   group: string;
   decimal: string;
+  placeholder?: string;
 }
-declare module './locale/*.js' {
-  const unit: Units;
-  export default unit;
-}
-
 declare const durationRE: RegExp;
 
 declare namespace parse {
