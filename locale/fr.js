@@ -15,5 +15,7 @@ unit.nanoseconde = en.ns
 
 unit.group = ' '
 unit.decimal = ','
+// Intl.NumberFormat('fr') groups digits with a narrow no-break space (U+202F)
+unit.placeholder = en.placeholder + '\u202F'
 
 export default unit

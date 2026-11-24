@@ -6,6 +6,7 @@ import es from './locale/es.js'
 import en from './locale/en.js'
 import de from './locale/de.js'
 import ru from './locale/ru.js'
+import fr from './locale/fr.js'
 
 let { ns, h, mo, s, ms, d, y, m } = parse.unit
 
@@ -302,6 +303,18 @@ t('locale separators', t => {
 	// every component's decimal separator must be normalized, not just the first
 	t.equal(parse('1,5 s 1,5 s'), 3000)
 	t.equal(parse('2,5h 3,5h'), 21600000)
+
+	// fr: no-break space, narrow no-break space (what Intl.NumberFormat('fr') prints), plain space
+	parse.unit = fr
+	t.equal(parse('10\u00A0000 secondes'), 10000 * 1000)
+	t.equal(parse('10\u202F000 secondes'), 10000 * 1000)
+	t.equal(parse('12\u202F345,5 secondes'), 12345500)
+	t.equal(parse('1\u202F234\u202F567,25 ms'), 1234567.25)
+	t.equal(parse('10 000 secondes'), 10000 * 1000)
+	// a narrow no-break space between a number and its unit is still allowed
+	t.equal(parse('5\u202Fh'), 5 * 3600000)
+
+	parse.unit = en
 	t.end()
 })
 
