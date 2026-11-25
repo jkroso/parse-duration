@@ -7,6 +7,8 @@ import en from './locale/en.js'
 import de from './locale/de.js'
 import ru from './locale/ru.js'
 import fr from './locale/fr.js'
+import ja from './locale/ja.js'
+import zh from './locale/zh.js'
 
 let { ns, h, mo, s, ms, d, y, m } = parse.unit
 
@@ -278,6 +280,29 @@ t('locale plural forms', t => {
 
 	parse.unit = es
 	t.equal(parse('2 meses'), 2 * mo)
+
+	parse.unit = en
+	t.end()
+})
+
+t('locale counter forms', t => {
+	parse.unit = ja
+	t.equal(parse('3日間'), 3 * d)
+	t.equal(parse('3ヶ月間'), 3 * mo)
+	t.equal(parse('3か月'), 3 * mo)
+	t.equal(parse('3か月間'), 3 * mo)
+	t.equal(parse('3カ月'), 3 * mo)
+	t.equal(parse('3カ月間'), 3 * mo)
+	t.equal(parse('3ヵ月'), 3 * mo)
+	t.equal(parse('3ヵ月間'), 3 * mo)
+	t.equal(parse('1年3か月'), y + 3 * mo)
+	t.equal(parse('1日12時間', 'h'), 36)
+
+	parse.unit = zh
+	t.equal(parse('3个月'), 3 * mo)
+	t.equal(parse('1年3个月'), y + 3 * mo)
+	t.equal(parse('2个星期', 'd'), 14)
+	t.equal(parse('2个小时30分钟', 'm'), 150)
 
 	parse.unit = en
 	t.end()
