@@ -3,9 +3,9 @@ import en from './en.js'
 const unit = Object.create(en)
 
 unit.年 = unit.年間 = en.y
-unit.月 = unit.ヶ月 = en.mo
+unit.月 = unit.ヶ月 = unit.ヶ月間 = unit.か月 = unit.か月間 = unit.カ月 = unit.カ月間 = unit.ヵ月 = unit.ヵ月間 = en.mo
 unit.週 = unit.週間 = en.w
-unit.日 = en.d
+unit.日 = unit.日間 = en.d
 unit.時間 = unit.時 = en.h
 unit.分 = unit.分間 = en.m
 unit.秒 = unit.秒間 = en.s
