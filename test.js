@@ -9,6 +9,7 @@ import ru from './locale/ru.js'
 import fr from './locale/fr.js'
 import ja from './locale/ja.js'
 import zh from './locale/zh.js'
+import id from './locale/id.js'
 
 let { ns, h, mo, s, ms, d, y, m } = parse.unit
 
@@ -303,6 +304,33 @@ t('locale counter forms', t => {
 	t.equal(parse('1年3个月'), y + 3 * mo)
 	t.equal(parse('2个星期', 'd'), 14)
 	t.equal(parse('2个小时30分钟', 'm'), 150)
+
+	parse.unit = en
+	t.end()
+})
+
+t('locale short forms', t => {
+	// short unit names that Intl.NumberFormat prints with unitDisplay: 'short'
+	parse.unit = de
+	t.equal(parse('3 Mon.'), 3 * mo)
+	t.equal(parse('2 Wo.', 'd'), 14)
+	t.equal(parse('3 Tg.'), 3 * d)
+	t.equal(parse('1,5 Std.', 'm'), 90)
+	t.equal(parse('1 Std. 30 Min.', 'm'), 90)
+	t.equal(parse('10 Sek.'), 10 * s)
+
+	parse.unit = ru
+	t.equal(parse('5 л.'), 5 * y)
+	t.equal(parse('3 дн.'), 3 * d)
+	t.equal(parse('10 с'), 10 * s)
+	t.equal(parse('1 ч 30 мин 15 с', 's'), 5415)
+
+	parse.unit = es
+	t.equal(parse('2 sem.', 'd'), 14)
+
+	parse.unit = id
+	t.equal(parse('5 md'), 5)
+	t.equal(parse('5 ndtk'), 5 * ns)
 
 	parse.unit = en
 	t.end()

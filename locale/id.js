@@ -9,9 +9,9 @@ unit.hari = unit.hr = en.d
 unit.jam = unit.j = en.h
 unit.menit = unit.mnt = en.m
 unit.detik = unit.dtk = unit.det = en.s
-unit.milidetik = en.ms
+unit.milidetik = unit.md = en.ms
 unit.mikrodetik = en.us
-unit.nanodetik = en.ns
+unit.nanodetik = unit.ndtk = en.ns
 
 unit.group = '.'
 unit.decimal = ','

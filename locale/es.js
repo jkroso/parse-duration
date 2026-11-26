@@ -4,7 +4,7 @@ const unit = Object.create(en)
 
 unit.año = unit.a = en.y
 unit.mes = unit.meses = en.mo
-unit.semana = en.w
+unit.semana = unit.sem = en.w
 unit.día = en.d
 unit.hora = en.h
 unit.minuto = en.m
