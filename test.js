@@ -336,6 +336,18 @@ t('locale short forms', t => {
 	t.end()
 })
 
+t('locale narrow forms', t => {
+	// unit names that Intl.DurationFormat prints with style: 'narrow'
+	parse.unit = ru
+	t.equal(parse('2 м.'), 2 * mo)
+	t.equal(parse('3 н.', 'd'), 21)
+	t.equal(parse('1 г. 2 м. 3 н. 4 д.', 'd'), (y + 2 * mo) / d + 25)
+	t.equal(parse('2 м. 1 мин', 'm'), 2 * mo / m + 1)
+
+	parse.unit = en
+	t.end()
+})
+
 t('locale separators', t => {
 	parse.unit = en
 	t.equal(parse('3.14 seconds'), 3140)
