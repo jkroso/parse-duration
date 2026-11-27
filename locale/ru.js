@@ -3,8 +3,8 @@ import en from './en.js'
 const unit = Object.create(en)
 
 unit.год = unit.года = unit.лет = unit.г = unit.л = en.y
-unit.месяц = unit.месяца = unit.месяцев = unit.мес = en.mo
-unit.неделя = unit.неделю = unit.недели = unit.недель = unit.нед = en.w
+unit.месяц = unit.месяца = unit.месяцев = unit.мес = unit.м = en.mo
+unit.неделя = unit.неделю = unit.недели = unit.недель = unit.нед = unit.н = en.w
 unit.день = unit.дня = unit.дней = unit.дн = unit.д = en.d
 unit.час = unit.часа = unit.часов = unit.ч = en.h
 unit.минута = unit.минуту = unit.минуты = unit.минут = unit.мин = en.m
